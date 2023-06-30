@@ -1,0 +1,49 @@
+int Trig = 8;
+int Echo = 9;
+int Led = 10;
+int Buzzer = 11;
+int duration;
+int distance;
+int safetyDistance;
+
+void setup() {
+  pinMode(Trig, OUTPUT);
+  pinMode(Echo, INPUT);
+  pinMode(Led, OUTPUT);
+  pinMode(Buzzer, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  digitalWrite(Trig, LOW);
+  delayMicroseconds(2);
+  digitalWrite(Trig, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(Trig, LOW);
+  duration = pulseIn(Echo, HIGH);
+  distance = duration*0.034/2;
+  safetyDistance = distance;
+  if (safetyDistance <= 4){
+    digitalWrite(Led, HIGH);
+    digitalWrite(Buzzer, HIGH);
+    digitalWrite(Led, LOW);
+    digitalWrite(Buzzer, LOW);
+    digitalWrite(Led, HIGH);
+    digitalWrite(Buzzer, HIGH);
+    if (safetyDistance <=3){
+      digitalWrite(Led, HIGH);
+      digitalWrite(Buzzer, HIGH);
+      digitalWrite(Led, LOW);
+      digitalWrite(Buzzer, LOW);
+      if (safetyDistance >=2){
+        digitalWrite(Led, HIGH);
+        digitalWrite(Buzzer, HIGH);
+      }
+    }
+  }else{
+    digitalWrite(Led, LOW);
+    digitalWrite(Buzzer, LOW);
+  }
+  Serial.print("Distance: ");
+  Serial.println(distance);
+}
