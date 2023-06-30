@@ -44,6 +44,7 @@ void loop() {
     digitalWrite(Led, LOW);
     digitalWrite(Buzzer, LOW);
   }
+
   Serial.print("Distance: ");
   Serial.println(distance);
 }
