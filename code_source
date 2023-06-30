@@ -1,5 +1,5 @@
-int Trig = 8;
-int Echo = 9;
+int Echo = 8;
+int Trig = 9;
 int Led = 10;
 int Buzzer = 11;
 int duration;
